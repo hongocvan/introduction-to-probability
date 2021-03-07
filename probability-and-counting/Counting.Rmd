@@ -4,8 +4,8 @@ author: "Ho Ngoc Van"
 date: "3/1/2021"
 output:
   html_document: default
-  word_document: default
   pdf_document: default
+  word_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -96,8 +96,8 @@ a.How many possible outcomes are there for the tournament (the outcome lists out
 **Code:**
 
 ```{r}
-comb = function(n, x) {
-  factorial(n) / factorial(n-x) / factorial(x)
+comb <- function(n, x) {
+        factorial(n) / factorial(n-x) / factorial(x)
 }
 
 n <- 7
@@ -147,8 +147,8 @@ c.Count how many games in total are played, this time by directly thinking about
 **Code:**
 
 ```{r}
-comb = function(n, x) {
-  factorial(n) / factorial(n-x) / factorial(x)
+comb <- function(n, x) {
+        factorial(n) / factorial(n-x) / factorial(x)
 }
 
 2*comb(20, 2)
@@ -165,8 +165,8 @@ a.How many possible outcomes for the individual games are there, such that overa
 **Code:**
 
 ```{r}
-comb = function(n, x) {
-  factorial(n) / factorial(n-x) / factorial(x)
+comb <- function(n, x) {
+        factorial(n) / factorial(n-x) / factorial(x)
 }
 
 comb(7, 3) * comb(4, 2) * comb(2, 2)
@@ -211,22 +211,26 @@ c1 + c2
 
 a.How many ways are there to split a dozen people into 3 teams, where one team has 2 people, and the other two teams have 5 people each?
 
-**Answer:** 
+**Answer:** $\frac{\binom {12}5 \binom 75 \binom 22}{2!}$
 
 **Code:**
 
 ```{r}
+comb <- function(n, x) {
+        factorial(n) / factorial(n-x) / factorial(x)
+}
 
+comb(12, 5)*comb(7, 5)*comb(2, 2)/2
 ```
 
 b.How many ways are there to split a dozen people into 3 teams, where each team has 4 people?
 
-**Answer:** 
+**Answer:**  $\frac{\binom {12}4 \binom 84 \binom 44}{3!}$
 
 **Code:**
 
 ```{r}
-
+comb(12, 4) * comb(8, 4) * comb(4, 4)/(3*2*1)
 ```
 
 ---
@@ -235,22 +239,36 @@ b.How many ways are there to split a dozen people into 3 teams, where each team 
 
 a.How many paths are there from the point (0, 0) to the point (110, 110) in the plane such that each step either consists of going one unit up or one unit to the right?
 
-**Answer:** 
+**Answer:** $\binom {221}{110}$
 
 **Code:**
 
 ```{r}
+comb <- function(n, x) {
+        factorial(n) / factorial(n-x) / factorial(x)
+}
 
+comb(221, 110)
+```
+
+Here, we know that the factorial of 221 is too big, we can't calculate by using the factorial function. To solve this problem, we rewrite the comb function.
+
+```{r}
+comb <- function(n, k){
+        prod((n-k+1):n/1:k)
+}
+
+comb(221, 110)
 ```
 
 b.How many paths are there from (0, 0) to (210, 221), where each step consists of going one unit up or one unit to the right, and the path has to go through (110, 111)?
 
-**Answer:** 
+**Answer:** $\binom {221}{110} \binom {200}{100}$
 
 **Code:**
 
 ```{r}
-
+comb(221, 110) * comb(200, 100)
 ```
 
 ---
